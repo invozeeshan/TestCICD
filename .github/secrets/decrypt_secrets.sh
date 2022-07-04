@@ -3,8 +3,8 @@
 set -eo pipefail
 
 
-gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/match_appstore_TextApp_profile.mobileprovision ./.github/secrets/match_appstore_TextApp_profile.gpg
-gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/Certificates.p12 ./.github/secrets/Certificates.p12.gpg
+gpg --quiet --batch --yes --decrypt --passphrase="$SIGNING_CERTIFICATE_PASSWORD" --output ./.github/secrets/match_appstore_TextApp_profile.mobileprovision ./.github/secrets/match_appstore_TextApp_profile.gpg
+gpg --quiet --batch --yes --decrypt --passphrase="$SIGNING_CERTIFICATE_PASSWORD" --output ./.github/secrets/Certificates.p12 ./.github/secrets/Certificates.p12.gpg
 
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 
@@ -19,6 +19,3 @@ security default-keychain -s ~/Library/Keychains/build.keychain
 security unlock-keychain -p "" ~/Library/Keychains/build.keychain
 
 security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
-
-
-
