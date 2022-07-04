@@ -3,7 +3,7 @@
 set -eo pipefail
 
 xcodebuild -project TestApp.xcodeproj \
-            -scheme TestApp\ iOS \
+            -scheme TestApp \
             -sdk iphoneos \
             -configuration AppStoreDistribution \
             -archivePath $PWD/build/TestApp.xcarchive \
