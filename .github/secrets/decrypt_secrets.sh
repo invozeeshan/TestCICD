@@ -2,7 +2,7 @@
 #!/bin/sh
 set -eo pipefail
 
-echo "$IOS_KEYS"
+echo "${IOS_KEYS} IOS Keys"
 #gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/CICD_Test__Release.mobileprovision.mobileprovision ./.github/secrets/CICD_Test__Release.mobileprovision.gpg
 #gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/HippocratesTech_Release.p12 ./.github/secrets/HippocratesTech_Release.p12.gpg
 
