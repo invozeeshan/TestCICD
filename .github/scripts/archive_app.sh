@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-xcodebuild -workspace TestApp.xcworkspace \
+xcodebuild -project TestApp.xcodeproj \
             -scheme TestApp\ iOS \
             -sdk iphoneos \
             -configuration AppStoreDistribution \
