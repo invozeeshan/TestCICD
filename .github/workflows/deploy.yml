@@ -19,7 +19,7 @@ jobs:
       env:
         PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
     - name: Select Xcode
-      run: sudo Xcode-select -switch/Applications/Xcode_13.3.1.app && /usr/bin/xcodebuild -version
+      run: sudo Xcode-select -switch/Applications/Xcode.app && /usr/bin/xcodebuild -version
     - name: Build archive
       run: xcodebuild -sdk iphones -project TestCICD/TestApp.xcodeproj -configuration Release -scheme TestApp -derivedDataPath DerivedData -archivePath DerivedData/Archive/TestApp archive
     - name: Export Archive
