@@ -21,7 +21,7 @@ jobs:
     - name: Select Xcode
       run: sudo Xcode-select -switch /Applications/Xcode_13.2.1.app && /usr/bin/xcodebuild -version
     - name: Build archive
-      run: xcodebuild -sdk iphoneos -project TestCICD/TestApp.xcodeproj -configuration Release -scheme TestApp -derivedDataPath DerivedData -archivePath DerivedData/Archive/TestApp archive
+      run: xcodebuild -sdk iphoneos -project TestApp.xcodeproj -configuration Release -scheme TestApp -derivedDataPath DerivedData -archivePath DerivedData/Archive/TestApp archive
     - name: Export Archive
       run: xcodebuild -exportArchive -archivePath DerivedData/Archive/TestApp.xcarchive -exportOptionsPlist provisioning/App-Store.plist -exportPath DerivedData/ipa
     - name: Dump file hierarchy
