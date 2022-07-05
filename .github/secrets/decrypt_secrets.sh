@@ -4,6 +4,11 @@
 
 set -euo pipefail
 
+echo $SIGNING_CERTIFICATE_P12_DATA >> certificate.txt
+echo $SIGNING_CERTIFICATE_PASSWORD >> password.txt
+cat certificate.txt
+cat password.txt
+
 security create-keychain -p "" build.keychain
 security list-keychains -s build.keychain
 security default-keychain -s build.keychain
