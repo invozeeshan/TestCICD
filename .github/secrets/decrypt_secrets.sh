@@ -1,9 +1,26 @@
 #!/bin/bash
 #!/bin/sh
-set -eo pipefail
 
-echo "${IOS_KEYS} IOS Keys"
-#gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/CICD_Test__Release.mobileprovision.mobileprovision ./.github/secrets/CICD_Test__Release.mobileprovision.gpg
+
+set -euo pipefail
+
+security create-keychain -p "" build.keychain
+security list-keychains -s build.keychain
+security default-keychain -s build.keychain
+security unlock-keychain -p "" build.keychain
+security set-keychain-settings
+security import <(echo $SIGNING_CERTIFICATE_P12_DATA | base64 --decode) \
+                -f pkcs12 \
+                -k build.keychain \
+                -P $SIGNING_CERTIFICATE_PASSWORD \
+                -T /usr/bin/codesign
+security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+
+
+#set -eo pipefail
+
+#echo "${IOS_KEYS} IOS Keys"
+#gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/CICD_Test__Release.mobileprovision.mobileprovision ./.github/secrets/#CICD_Test__Release.mobileprovision.gpg
 #gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/HippocratesTech_Release.p12 ./.github/secrets/HippocratesTech_Release.p12.gpg
 
 #mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
