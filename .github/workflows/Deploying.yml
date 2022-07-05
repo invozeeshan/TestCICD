@@ -22,7 +22,7 @@ jobs:
         env:
           PROVISIONING_PROFILE_DATA: ${{ secrets.PROVISIONING_PROFILE_DATA }}
         run: |
-          exec .github/scripts/import_profile.sh
+          exec .github/secrets/import_profile.sh
       - name: Archiving project
         env:
           PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
